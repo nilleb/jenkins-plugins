@@ -5,7 +5,7 @@
         
         <h1>${it.displayName}</h1>
         
-        <f:form method="POST" action="save">
+        <!--f:form method="POST" action="save">
             <table>
                 <tr>
                     <td><h2>Name</h2></td>
@@ -39,7 +39,7 @@
                 <f:submit value="Save"/>
             </p>
           
-        </f:form>
+        </f:form-->
         
     </l:main-panel>
   </l:layout>
