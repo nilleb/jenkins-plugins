@@ -37,7 +37,7 @@ public class MyRootAction implements RootAction, Describable<MyRootAction> {
         return "A";
     }
     
-    public class MyGoal {
+    public static final class MyGoal {
 
         public final String displayName;
 
@@ -57,7 +57,7 @@ public class MyRootAction implements RootAction, Describable<MyRootAction> {
         }
     }
 
-    public List<MyGoal> getBuildGoals() {
+    public static List<MyGoal> getBuildGoals() {
         ArrayList<MyGoal> arrayList = new ArrayList<MyGoal>();
         arrayList.add(new MyGoal("A", "A"));
         arrayList.add(new MyGoal("B", "B"));
@@ -65,7 +65,7 @@ public class MyRootAction implements RootAction, Describable<MyRootAction> {
         return arrayList;
     }
     
-    public class MyDescriptor extends Descriptor<MyRootAction> {
+    public static final class MyDescriptor extends Descriptor<MyRootAction> {
 
         @Override
         public String getDisplayName() {
