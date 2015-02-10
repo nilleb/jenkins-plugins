@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Extension
-public class MyRootAction implements RootAction, Describable<MyRootAction> {
+public class MyRootAction implements RootAction, AbstractDescribableImpl<MyRootAction> {
 
     @Override
     public String getIconFileName() {
@@ -28,7 +28,7 @@ public class MyRootAction implements RootAction, Describable<MyRootAction> {
     }
 
     @Override
-    public Descriptor getDescriptor() {
+    public Descriptor<MyRootAction> getDescriptor() {
         return new MyDescriptor();
     }
 
