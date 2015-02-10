@@ -1,6 +1,7 @@
 package org.jenkinsci.plugins.rootactionexampleplugin;
 
 import hudson.Extension;
+import hudson.model.AbstractDescribableImpl;
 import hudson.model.Describable;
 import hudson.model.Descriptor;
 import hudson.model.RootAction;
