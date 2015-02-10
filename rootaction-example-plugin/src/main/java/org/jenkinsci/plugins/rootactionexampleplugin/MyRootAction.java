@@ -2,7 +2,6 @@ package org.jenkinsci.plugins.rootactionexampleplugin;
 
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
-import hudson.model.Describable;
 import hudson.model.Descriptor;
 import hudson.model.RootAction;
 import hudson.util.ListBoxModel;
@@ -10,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Extension
-public class MyRootAction implements RootAction, AbstractDescribableImpl<MyRootAction> {
+public class MyRootAction 
+    extends AbstractDescribableImpl<MyRootAction> 
+    implements RootAction {
 
     @Override
     public String getIconFileName() {
@@ -26,11 +27,6 @@ public class MyRootAction implements RootAction, AbstractDescribableImpl<MyRootA
     @Override
     public String getUrlName() {
         return getClass().getSimpleName();
-    }
-
-    @Override
-    public Descriptor<MyRootAction> getDescriptor() {
-        return new MyDescriptor();
     }
 
     public String getGoalType()
@@ -66,19 +62,19 @@ public class MyRootAction implements RootAction, AbstractDescribableImpl<MyRootA
         return arrayList;
     }
     
-    public static final class MyDescriptor extends Descriptor<MyRootAction> {
-
-        @Override
-        public String getDisplayName() {
-            return clazz.getSimpleName();
-        }
-
+    @Extension
+    public static class DescriptorImpl extends Descriptor<MyRootAction> {
         public ListBoxModel doFillGoalTypeItems() {
             ListBoxModel items = new ListBoxModel();
             for (MyGoal goal : getBuildGoals()) {
                 items.add(goal.getDisplayName(), goal.getId());
             }
             return items;
+        }
+
+        @Override
+        public String getDisplayName() {
+            return "";
         }
     }
 }
