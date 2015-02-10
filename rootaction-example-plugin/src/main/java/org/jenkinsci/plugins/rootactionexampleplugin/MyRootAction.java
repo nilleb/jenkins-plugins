@@ -19,12 +19,12 @@ public class MyRootAction implements RootAction, Describable<MyRootAction> {
 
     @Override
     public String getDisplayName() {
-        return "New Item";
+        return getClass().getSimpleName();
     }
 
     @Override
     public String getUrlName() {
-        return "MyRootAction";
+        return getClass().getSimpleName();
     }
 
     @Override
@@ -32,6 +32,11 @@ public class MyRootAction implements RootAction, Describable<MyRootAction> {
         return new MyDescriptor();
     }
 
+    public String getGoalType()
+    {
+        return "A";
+    }
+    
     public class MyGoal {
 
         public final String displayName;
@@ -64,7 +69,7 @@ public class MyRootAction implements RootAction, Describable<MyRootAction> {
 
         @Override
         public String getDisplayName() {
-            return "MyRootAction";
+            return clazz.getSimpleName();
         }
 
         public ListBoxModel doFillGoalTypeItems() {
