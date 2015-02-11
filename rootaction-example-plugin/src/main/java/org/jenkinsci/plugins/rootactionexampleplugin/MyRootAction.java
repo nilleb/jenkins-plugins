@@ -7,7 +7,9 @@ import hudson.model.Descriptor;
 import hudson.model.RootAction;
 import hudson.util.ListBoxModel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Extension
 public class MyRootAction 
@@ -72,6 +74,18 @@ public class MyRootAction
     
     @Extension
     public static final class DescriptorImpl extends Descriptor<MyRootAction> {
+        public Map<String, Object> doCalcAttributes(){
+            Map<String, Object> map = new HashMap<String, Object>();
+            this.calcFillSettings("goalType", map);
+            return map;
+        }
+
+        // not being called, anyway
+        @Override
+        public void calcFillSettings(String field, Map<String,Object> attributes) {
+            super.calcFillSettings(field, attributes);
+        }
+        
         public ListBoxModel doFillGoalTypeItems() {
             ListBoxModel items = new ListBoxModel();
             for (MyGoal goal : getBuildGoals()) {
