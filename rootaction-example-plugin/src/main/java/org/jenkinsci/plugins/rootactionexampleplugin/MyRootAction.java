@@ -2,6 +2,7 @@ package org.jenkinsci.plugins.rootactionexampleplugin;
 
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
+import hudson.model.Describable;
 import hudson.model.Descriptor;
 import hudson.model.RootAction;
 import hudson.util.ListBoxModel;
@@ -11,7 +12,7 @@ import java.util.List;
 @Extension
 public class MyRootAction 
     extends AbstractDescribableImpl<MyRootAction> 
-    implements RootAction {
+    implements RootAction, Describable<MyRootAction> {
 
     @Override
     public String getIconFileName() {
@@ -29,11 +30,18 @@ public class MyRootAction
         return getClass().getSimpleName();
     }
 
+    private String goalType = "A";
+    
     public String getGoalType()
     {
-        return "A";
+        return goalType;
     }
     
+    public void setGoalType(String g)
+    {
+        goalType = g;
+    }
+
     public static final class MyGoal {
 
         public final String displayName;
@@ -63,7 +71,7 @@ public class MyRootAction
     }
     
     @Extension
-    public static class DescriptorImpl extends Descriptor<MyRootAction> {
+    public static final class DescriptorImpl extends Descriptor<MyRootAction> {
         public ListBoxModel doFillGoalTypeItems() {
             ListBoxModel items = new ListBoxModel();
             for (MyGoal goal : getBuildGoals()) {
@@ -74,7 +82,7 @@ public class MyRootAction
 
         @Override
         public String getDisplayName() {
-            return "";
+            return clazz.getName();
         }
     }
 }
