@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.kohsuke.stapler.DataBoundConstructor;
 
 @Extension
 public class MyRootAction 
@@ -32,6 +33,15 @@ public class MyRootAction
         return getClass().getSimpleName();
     }
 
+    public MyRootAction()
+    {}
+    
+    @DataBoundConstructor
+    public MyRootAction(final String goalType)
+    {
+        this.goalType = goalType;
+    }
+    
     private String goalType = "A";
     
     public String getGoalType()
